@@ -1,7 +1,6 @@
 <?php setlocale(LC_ALL, 'fr_FR.UTF8', 'fr_FR', 'fr', 'fr', 'fra', 'fr_FR@euro');?>
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +34,7 @@
         <input type="submit" value="Afficher le calendrier">
     </form>
     <?php if (isset($_POST['months']) and isset($_POST['years'])) {
-        $dayWeek = date('N', mktime(0, 0, 0, $_POST['months'], 1, $_POST['years']));
+        $firstDayInWeek = date('N', mktime(0, 0, 0, $_POST['months'], 1, $_POST['years']));
         $daysInMonths = cal_days_in_month(CAL_GREGORIAN, $_POST['months'], $_POST['years']);
     ?>
         <table>
@@ -53,8 +52,8 @@
                 <tr>
                     <?php
                     $day = 1;
-                    for ($i = 1; $i <= $daysInMonths + $dayWeek - 1 ; $i++) {
-                        if ($i >= $dayWeek) {
+                    for ($i = 1; $i <= $daysInMonths + $firstDayInWeek - 1 ; $i++) {
+                        if ($i >= $firstDayInWeek) {
                             echo '<td>' . $day++ . '</td>';
                         } else {
                             echo '<td></td>';
