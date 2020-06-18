@@ -36,11 +36,11 @@
     </form>
     <?php if (isset($_POST['months']) and isset($_POST['years'])) {
         $dayWeek = date('N', mktime(0, 0, 0, $_POST['months'], 1, $_POST['years']));
-        $monthYear = cal_days_in_month(CAL_GREGORIAN, $_POST['months'], $_POST['years']);
+        $daysInMonths = cal_days_in_month(CAL_GREGORIAN, $_POST['months'], $_POST['years']);
     ?>
         <table>
             <caption><?= $monthsArray[$_POST['months']] . ' ' . $_POST['years'] ?></caption>
-            <?php if ($monthYear) { ?>
+            <?php if ($daysInMonths) { ?>
                 <tr>
                     <th>Lundi</th>
                     <th>Mardi</th>
@@ -53,7 +53,7 @@
                 <tr>
                     <?php
                     $day = 1;
-                    for ($i = 1; $i <= $monthYear + $dayWeek - 1 ; $i++) {
+                    for ($i = 1; $i <= $daysInMonths + $dayWeek - 1 ; $i++) {
                         if ($i >= $dayWeek) {
                             echo '<td>' . $day++ . '</td>';
                         } else {
